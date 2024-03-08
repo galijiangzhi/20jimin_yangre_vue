@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request
+from flask import Flask, render_template, request
 import os
 import paramiko
 
@@ -7,9 +7,6 @@ app = Flask(__name__)
 # 设置SSH连接的参数
 UPLOAD_FOLDER = '/home/baizhen'  # 替换为你想要保存上传图片的目录
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-import os
-
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -27,27 +24,39 @@ def upload_file():
             f.write(file.filename + '\n')
 
         # 将文件发送到第二个服务器
+        send_to_server(file_path, file.filename)
 
+        print('图片已成功转发并处理完成')  # 打印成功信息
+        return 'File uploaded, processed and sent back successfully', 200
 
-        # 建立SSH连接
-        ssh_client = paramiko.SSHClient()
-        ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh_client.connect('connect.westc.gpuhub.com', port=28184, username='root', password='your_password')
+def send_to_server(file_path, file_name):
+    # 建立SSH连接
+    ssh_client = paramiko.SSHClient()
+    ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh_client.connect('connect.westc.gpuhub.com', port=28184, username='root', password='your_password')
 
-        # 创建SFTP客户端
-        sftp_client = ssh_client.open_sftp()
+    # 创建SFTP客户端
+    sftp_client = ssh_client.open_sftp()
 
-        # 传输文件
-        local_path = file_path
-        remote_path = '/root/' + file.filename
-        sftp_client.put(local_path, remote_path)
+    # 传输文件
+    local_path = file_path
+    remote_path = "/root/chepaijiance/zangyaohua/mydata/train/images/6.jpg"
+    sftp_client.put(local_path, remote_path)
 
-        # 关闭连接
-        sftp_client.close()
-        ssh_client.close()
+    # 执行远程命令
+    ssh_stdin, ssh_stdout, ssh_stderr = ssh_client.exec_command('cd /root/chepaijiance/zangyaohua && bash test.sh')
 
-        print('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')  # 打印成功信息
-        return 'File uploaded and sent successfully', 200
+    # 等待脚本运行完成
+    ssh_stdout.channel.recv_exit_status()
+
+    # 传输处理后的文件回到本机
+    remote_result_path = '/root/chepaijiance/zangyaohua/runs/detect/exp7/6.jpg'
+    local_result_path = '/home/baizhen/' + file_name
+    sftp_client.get(remote_result_path, local_result_path)
+
+    # 关闭连接
+    sftp_client.close()
+    ssh_client.close()
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=43001,debug=True)
+    app.run(host='0.0.0.0', port=43001, debug=True)
