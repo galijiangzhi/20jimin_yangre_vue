@@ -63,7 +63,7 @@ def send_to_server(file_path, file_name):
     if os.path.exists(local_result_path):
         os.remove(local_result_path)
 
-    sftp_client.get(remote_result_path, local_result_path
+    sftp_client.get(remote_result_path, local_result_path)
 
     # 关闭连接
     sftp_client.close()
