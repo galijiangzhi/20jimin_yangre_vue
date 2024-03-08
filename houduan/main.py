@@ -25,7 +25,7 @@ def upload_file():
         # 发送文件给用户
         response = send_file('/home/baizhen/target_directory/zangyaohua/end/6.jpg', as_attachment=True)
         # 删除文件
-        time.sleep(1000)
+        time.sleep(10)
         os.remove(file_path)
         return response
 
