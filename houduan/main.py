@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import os
 import paramiko
-import re
+
 
 app = Flask(__name__)
 
@@ -52,14 +52,14 @@ def send_to_server(file_path, file_name):
 
     # 等待脚本运行完成
     ssh_stdout.channel.recv_exit_status()
-    remote_result_path = '/root/chepaijiance/zangyaohua/6.jpg'
 
     # 传输处理后的文件回到本机
+    remote_result_path = '/root/chepaijiance/zangyaohua/6.jpg'
     if os.path.exists("/home/baizhen/6.jpg"):
         # 如果文件存在，删除它
         os.remove("/home/baizhen/6.jpg")
         print("已删除现有文件")
-    local_result_path = '/home/baizhen/6.jpg',
+    local_result_path = '/home/baizhen/6.jpg'
 
     sftp_client.get(remote_result_path, local_result_path)
 
