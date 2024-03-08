@@ -22,7 +22,7 @@ def upload_file():
         # 执行脚本
         os.system("/bin/bash /home/baizhen/target_directory/zangyaohua/test.sh")
         # 发送文件给用户
-        response = send_file('/home/baizhen/target_directory/zangyaohua/6.jpg2', as_attachment=True)
+        response = send_file('/home/baizhen/target_directory/zangyaohua/6.jpg2/6.jpg', as_attachment=True)
         # 删除文件
         os.remove(file_path)
         return response
