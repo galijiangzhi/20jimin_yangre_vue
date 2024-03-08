@@ -3,6 +3,7 @@ import os
 from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # 启用CORS，允许所有源
 
 # 设置上传文件的保存目录
 UPLOAD_FOLDER = '/home/baizhen/project/6.jpg'
