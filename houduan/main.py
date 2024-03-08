@@ -38,9 +38,15 @@ def send_to_server(file_path, file_name):
     # 创建SFTP客户端
     sftp_client = ssh_client.open_sftp()
 
+    # 检查远程服务器上是否存在同名文件，如果存在则删除
+    remote_path = "/root/chepaijiance/zangyaohua/mydata/train/images/" + file_name
+    try:
+        sftp_client.remove(remote_path)
+    except FileNotFoundError:
+        pass
+
     # 传输文件
     local_path = file_path
-    remote_path = "/root/chepaijiance/zangyaohua/mydata/train/images/6.jpg"
     sftp_client.put(local_path, remote_path)
 
     # 执行远程命令
@@ -50,7 +56,7 @@ def send_to_server(file_path, file_name):
     ssh_stdout.channel.recv_exit_status()
 
     # 传输处理后的文件回到本机
-    remote_result_path = '/root/chepaijiance/zangyaohua/runs/detect/exp7/6.jpg'
+    remote_result_path = '/root/chepaijiance/zangyaohua/runs/detect/exp7/' + file_name
     local_result_path = '/home/baizhen/' + file_name
     sftp_client.get(remote_result_path, local_result_path)
 
