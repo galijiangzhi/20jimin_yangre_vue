@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,send_file
 import os
 import paramiko
 
@@ -21,8 +21,8 @@ def upload_file():
         if os.path.exists(file_path):
             os.remove(file_path)  # 删除原文件
         file.save(file_path)  # 保存新文件
+        # 执行脚本
         os.system("/bin/bash /home/baizhen/target_directory/zangyaohua/test.sh")
-        return 'File uploaded, processed and sent back successfully', 200
-
+        return send_file(file_path, as_attachment=True)
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=43001, debug=True)
