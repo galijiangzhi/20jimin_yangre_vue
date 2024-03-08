@@ -39,7 +39,7 @@ def send_to_server(file_path, file_name):
     sftp_client = ssh_client.open_sftp()
 
     # 检查远程服务器上是否存在同名文件，如果存在则删除
-    remote_path = "/root/chepaijiance/zangyaohua/mydata/train/images/" + file_name
+    remote_path = "/root/chepaijiance/zangyaohua/mydata/train/images/6.jpg"
     try:
         sftp_client.remove(remote_path)
     except FileNotFoundError:
