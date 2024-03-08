@@ -16,7 +16,7 @@ def upload_file():
     if file.filename == '':
         return 'No selected file', 400
     if file:
-        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file_path = "/home/baizhen/project/20jimin_yangre_vue/6.jpg"
         if os.path.exists(file_path):
             os.remove(file_path)  # 删除原文件
         file.save(file_path)  # 保存新文件
