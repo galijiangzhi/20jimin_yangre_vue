@@ -33,4 +33,4 @@ def upload_file():
         return send_file(file_path, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(host='192.168.31.100', port=43001)
+    app.run(host='0.0.0.0', port=43001)
