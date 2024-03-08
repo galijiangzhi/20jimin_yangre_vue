@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import os
 import paramiko
+import re
 
 app = Flask(__name__)
 
@@ -51,8 +52,13 @@ def send_to_server(file_path, file_name):
 
     # 等待脚本运行完成
     ssh_stdout.channel.recv_exit_status()
+    for line in ssh_stdout.readlines():
+        print(line)
+        match = re.search(r'exp\d+/6\.jpg', line)
+        if match:
+            remote_result_path = '/root/chepaijiance/zangyaohua/runs/detect/'+match.group()
+            break
     # 传输处理后的文件回到本机
-    remote_result_path = '/root/chepaijiance/zangyaohua/runs/detect/exp7/6.jpg'
     if os.path.exists("/home/baizhen/6.jpg"):
         # 如果文件存在，删除它
         os.remove("/home/baizhen/6.jpg")
