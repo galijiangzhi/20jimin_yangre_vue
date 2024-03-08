@@ -2,6 +2,7 @@ from flask import Flask, request, send_file
 import os
 from flask_cors import CORS
 import time
+import shutil
 
 app = Flask(__name__)
 CORS(app)  # 启用CORS，允许所有源
@@ -20,14 +21,15 @@ def upload_file():
     if file:
         file_path = '/home/baizhen/project/6.jpg'
         file.save(file_path)  # 保存文件
+
+        remove_file = "/home/baizhen/target_directory/zangyaohua/end"
+        if os.path.exists(remove_file):
+            shutil.rmtree(remove_file)
+            print("删除成功")
         # 执行脚本
         os.system("/bin/bash /home/baizhen/target_directory/zangyaohua/test.sh")
         # 发送文件给用户
-        response = send_file('/home/baizhen/target_directory/zangyaohua/end/6.jpg', as_attachment=True)
-        # 删除文件
-        time.sleep(10)
-        os.remove(file_path)
-        return response
+        return send_file(file_path, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(host='192.168.31.100', port=43001)
