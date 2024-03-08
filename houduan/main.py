@@ -54,9 +54,8 @@ def send_to_server(file_path, file_name):
 
     # 等待脚本运行完成
     ssh_stdout.channel.recv_exit_status()
-
     # 传输处理后的文件回到本机
-    remote_result_path = '/root/chepaijiance/zangyaohua/runs/detect/exp7/' + file_name
+    remote_result_path = '/root/chepaijiance/zangyaohua/runs/detect/exp7/6.jpg'
     local_result_path = '/home/baizhen/' + file_name
 
     # 检查本地是否存在同名文件，如果存在则删除
