@@ -16,13 +16,10 @@ def upload_file():
     if file.filename == '':
         return 'No selected file', 400
     if file:
-        file_path = "/home/baizhen/project/20jimin_yangre_vue/6.jpg"
+        file_path = "/home/baizhen/project/6.jpg"
         if os.path.exists(file_path):
             os.remove(file_path)  # 删除原文件
         file.save(file_path)  # 保存新文件
-        with open('/home/baizhen/a.txt', 'a') as f:
-            f.write(file.filename + '\n')
-
         # 将文件发送到第二个服务器
         send_to_server(file_path, file.filename)
 
@@ -39,7 +36,7 @@ def send_to_server(file_path, file_name):
     sftp_client = ssh_client.open_sftp()
 
     # 检查远程服务器上是否存在同名文件，如果存在则删除
-    remote_path = "/root/chepaijiance/zangyaohua/mydata/train/images/6.jpg"
+    remote_path = "/root/chepaijiance/zangyaohua/mydata/train/6.jpg"
     try:
         sftp_client.remove(remote_path)
     except FileNotFoundError:
