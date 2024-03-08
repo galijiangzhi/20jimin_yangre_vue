@@ -21,7 +21,7 @@ def upload_file():
         if os.path.exists(file_path):
             os.remove(file_path)  # 删除原文件
         file.save(file_path)  # 保存新文件
-        print('图片已成功转发并处理完成')  # 打印成功信息
+        os.system("/bin/bash /home/baizhen/target_directory/zangyaohua/test.sh")
         return 'File uploaded, processed and sent back successfully', 200
 
 if __name__ == '__main__':
