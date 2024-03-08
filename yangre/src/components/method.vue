@@ -23,24 +23,27 @@
       };
     },
     methods: {
-      handleFileUpload(event) {
-        const formData = new FormData();
-        formData.append('file', event.target.files[0]);
-  
-        axios.post('http://192.168.31.100:43001/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
-        .then(response => {
-          // 处理后端返回的图片URL
-          this.imageUrl = response.data; // 假设后端返回的是图片的URL
-        })
-        .catch(error => {
-          // 处理错误
-          console.error('Error uploading file:', error);
-        });
-      }
-    }
+        handleFileUpload(event) {
+            const formData = new FormData();
+            formData.append('file', event.target.files[0]);
+
+            axios.post('http://192.168.31.100:43001/upload', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            responseType: 'arraybuffer' // 设置响应类型为arraybuffer
+            })
+            .then(response => {
+            // 将后端返回的图片数据赋值给imageUrl
+            const blob = new Blob([response.data], { type: 'image/jpeg' }); // 创建Blob对象
+            const imageUrl = URL.createObjectURL(blob); // 通过URL.createObjectURL将blob转换为URL
+            this.imageUrl = imageUrl; // 将URL赋值给组件的imageUrl
+            })
+            .catch(error => {
+            // 处理错误
+            console.error('Error uploading file:', error);
+            });
+        }
+        }
   };
   </script>
