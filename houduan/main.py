@@ -58,7 +58,12 @@ def send_to_server(file_path, file_name):
     # 传输处理后的文件回到本机
     remote_result_path = '/root/chepaijiance/zangyaohua/runs/detect/exp7/' + file_name
     local_result_path = '/home/baizhen/' + file_name
-    sftp_client.get(remote_result_path, local_result_path)
+
+    # 检查本地是否存在同名文件，如果存在则删除
+    if os.path.exists(local_result_path):
+        os.remove(local_result_path)
+
+    sftp_client.get(remote_result_path, local_result_path
 
     # 关闭连接
     sftp_client.close()
