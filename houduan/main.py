@@ -56,11 +56,11 @@ def send_to_server(file_path, file_name):
     ssh_stdout.channel.recv_exit_status()
     # 传输处理后的文件回到本机
     remote_result_path = '/root/chepaijiance/zangyaohua/runs/detect/exp7/6.jpg'
-    local_result_path = '/home/baizhen/' + file_name
-
-    # 检查本地是否存在同名文件，如果存在则删除
-    if os.path.exists(local_result_path):
-        os.remove(local_result_path)
+    if os.path.exists("/home/baizhen/6.jpg"):
+        # 如果文件存在，删除它
+        os.remove("/home/baizhen/6.jpg")
+        print("已删除现有文件")
+    local_result_path = '/home/baizhen/6.jpg'
 
     sftp_client.get(remote_result_path, local_result_path)
 
