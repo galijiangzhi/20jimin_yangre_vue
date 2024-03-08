@@ -52,18 +52,31 @@ def send_to_server(file_path, file_name):
 
     # 等待脚本运行完成
     ssh_stdout.channel.recv_exit_status()
-    for line in ssh_stdout.readlines():
-        print(line)
-        match = re.search(r'exp\d+/6\.jpg', line)
+    parent_dir = '/root/chepaijiance/zangyaohua/runs/detect'
+    dirs = [d for d in os.listdir(parent_dir) if os.path.isdir(os.path.join(parent_dir, d))]
+
+    # 初始化最大数字和对应的子目录
+    max_num = 0
+    max_numeric_dir = ''
+
+    for dir_name in dirs:
+        # 提取目录名称中的数字
+        match = re.search(r'\d+', dir_name)
         if match:
-            remote_result_path = '/root/chepaijiance/zangyaohua/runs/detect/'+match.group()
-            break
+            current_num = int(match.group())
+
+            # 比较当前数字和已记录的最大数字
+            if current_num > max_num:
+                max_num = current_num
+                max_numeric_dir = os.path.join(parent_dir, dir_name)
+    remote_result_path = '/root/chepaijiance/zangyaohua/runs/detect/exp'+str(max_numeric_dir)+'/6.jpg'
+
     # 传输处理后的文件回到本机
     if os.path.exists("/home/baizhen/6.jpg"):
         # 如果文件存在，删除它
         os.remove("/home/baizhen/6.jpg")
         print("已删除现有文件")
-    local_result_path = '/home/baizhen/6.jpg'
+    local_result_path = '/home/baizhen/6.jpg',
 
     sftp_client.get(remote_result_path, local_result_path)
 
