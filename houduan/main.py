@@ -17,6 +17,8 @@ def upload_file():
         return 'No selected file', 400
     if file:
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+        with open('/home/baizhen/a.txt', 'a') as f:
+            f.write(file.filename + '\n')
         return 'File uploaded successfully', 200
 
 if __name__ == '__main__':
