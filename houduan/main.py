@@ -52,24 +52,7 @@ def send_to_server(file_path, file_name):
 
     # 等待脚本运行完成
     ssh_stdout.channel.recv_exit_status()
-    parent_dir = '/root/chepaijiance/zangyaohua/runs/detect'
-    dirs = [d for d in os.listdir(parent_dir) if os.path.isdir(os.path.join(parent_dir, d))]
-
-    # 初始化最大数字和对应的子目录
-    max_num = 0
-    max_numeric_dir = ''
-
-    for dir_name in dirs:
-        # 提取目录名称中的数字
-        match = re.search(r'\d+', dir_name)
-        if match:
-            current_num = int(match.group())
-
-            # 比较当前数字和已记录的最大数字
-            if current_num > max_num:
-                max_num = current_num
-                max_numeric_dir = os.path.join(parent_dir, dir_name)
-    remote_result_path = '/root/chepaijiance/zangyaohua/runs/detect/exp'+str(max_numeric_dir)+'/6.jpg'
+    remote_result_path = '/root/chepaijiance/zangyaohua/6.jpg'
 
     # 传输处理后的文件回到本机
     if os.path.exists("/home/baizhen/6.jpg"):
