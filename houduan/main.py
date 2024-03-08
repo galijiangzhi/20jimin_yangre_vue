@@ -1,12 +1,10 @@
-from flask import Flask, render_template, request,send_file
+from flask import Flask, request, send_file
 import os
-import paramiko
-
 
 app = Flask(__name__)
 
-# 设置SSH连接的参数
-UPLOAD_FOLDER = '/home/baizhen'  # 替换为你想要保存上传图片的目录
+# 设置上传文件的保存目录
+UPLOAD_FOLDER = '/home/baizhen/project'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/upload', methods=['POST'])
@@ -17,12 +15,11 @@ def upload_file():
     if file.filename == '':
         return 'No selected file', 400
     if file:
-        file_path = "/home/baizhen/project/6.jpg"
-        if os.path.exists(file_path):
-            os.remove(file_path)  # 删除原文件
-        file.save(file_path)  # 保存新文件
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(file_path)  # 保存文件
         # 执行脚本
         os.system("/bin/bash /home/baizhen/target_directory/zangyaohua/test.sh")
         return send_file(file_path, as_attachment=True)
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=43001, debug=True)
+    app.run(host='192.168.31.100', port=43001)
