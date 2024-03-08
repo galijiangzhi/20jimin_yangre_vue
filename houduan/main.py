@@ -21,7 +21,11 @@ def upload_file():
         file.save(file_path)  # 保存文件
         # 执行脚本
         os.system("/bin/bash /home/baizhen/target_directory/zangyaohua/test.sh")
-        return send_file(file_path, as_attachment=True)
+        # 发送文件给用户
+        response = send_file(file_path, as_attachment=True)
+        # 删除文件
+        os.remove(file_path)
+        return response
 
 if __name__ == '__main__':
     app.run(host='192.168.31.100', port=43001)
