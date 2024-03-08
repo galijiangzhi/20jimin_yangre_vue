@@ -29,6 +29,7 @@ def upload_file():
         # 执行脚本
         os.system("/bin/bash /home/baizhen/target_directory/zangyaohua/test.sh")
         # 发送文件给用户
+        file_path = '/home/baizhen/target_directory/zangyaohua/end/6.jpg'
         return send_file(file_path, as_attachment=True)
 
 if __name__ == '__main__':
