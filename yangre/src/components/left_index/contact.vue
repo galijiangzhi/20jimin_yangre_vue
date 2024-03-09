@@ -1,12 +1,14 @@
 <template>
-    <div :style="h1_st">联系我们</div>
-    <div :style="root_st" class="contact-icons">
-      <img :style="img_st" src="../../../public/电话.png" alt="phone" @mouseover="showInfo('Phone number: 132-4367-2048')" @mouseout="hideInfo" />
-      <img :style="img_st" src="../../../public/邮箱.png" alt="email" @mouseover="showInfo('Email: galijiangzhi@163.com')" @mouseout="hideInfo" />
-      <img :style="img_st" src="../../../public/微信.png" alt="wechat" @mouseover="showInfo('WeChat: PLBRDWYYJZSXYSDN')" @mouseout="hideInfo" />
-      <img :style="img_st" src="../../../public/qq.png" alt="qq" @mouseover="showInfo('QQ: 2981563487')" @mouseout="hideInfo" />
-      <img :style="img_st" src="../../../public/邮筒.png" alt="postal" @mouseover="showInfo('Postal code: 810007')" @mouseout="hideInfo" />
-      <div v-if="showInfoBox" :style="infoBoxStyle">{{ infoText }}</div>
+    <div :style="ro_st">
+        <div :style="h1_st">联系我们</div>
+        <div :style="root_st" class="contact-icons">
+            <img :style="img_st" src="../../../public/电话.png" alt="phone" @mouseover="showInfo('Phone number: 132-4367-2048')" @mouseout="hideInfo" />
+            <img :style="img_st" src="../../../public/邮箱.png" alt="email" @mouseover="showInfo('Email: galijiangzhi@163.com')" @mouseout="hideInfo" />
+            <img :style="img_st" src="../../../public/微信.png" alt="wechat" @mouseover="showInfo('WeChat: PLBRDWYYJZSXYSDN')" @mouseout="hideInfo" />
+            <img :style="img_st" src="../../../public/qq.png" alt="qq" @mouseover="showInfo('QQ: 2981563487')" @mouseout="hideInfo" />
+            <img :style="img_st" src="../../../public/邮筒.png" alt="postal" @mouseover="showInfo('Postal code: 810007')" @mouseout="hideInfo" />
+        <div v-if="showInfoBox" :style="infoBoxStyle">{{ infoText }}</div>
+        </div>
     </div>
   </template>
   
@@ -14,22 +16,23 @@
   export default {
     data() {
       return {
+        ro_st:{
+            display:"flex",
+            position:"absolute",
+            top:"900px",
+            width:"390px",
+            alignItems: "center" 
+        },
         h1_st:{
-            position: "absolute",
-            height: "100px",
             width: "390px",
-            left:"20px",
-            top: "965px",
             fontSize:"30px"
         },
         root_st: {
-          position: "absolute",
           height: "100px",
           width: "390px",
-          top: "940px",
           display: "flex",
           justifyContent: "flex-end",
-          alignItems: "center"
+          alignItems: "center",
         },
         img_st:{
             height:"40px",
