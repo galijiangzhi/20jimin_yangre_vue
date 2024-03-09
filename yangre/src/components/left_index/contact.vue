@@ -19,13 +19,14 @@
         ro_st:{
             display:"flex",
             position:"absolute",
-            top:"900px",
+            top:"850px",
             width:"390px",
             alignItems: "center" 
         },
         h1_st:{
             width: "390px",
-            fontSize:"30px"
+            fontSize:"25px",
+            marginLeft:"10px"
         },
         root_st: {
           height: "100px",

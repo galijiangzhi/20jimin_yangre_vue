@@ -22,7 +22,7 @@
       return {
         root_st: {
           position: "absolute",
-          height: "600px",
+          height: "550px",
           width: "390px",
           top: "270px",
           backgroundColor: "red",
