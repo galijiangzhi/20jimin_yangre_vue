@@ -3,22 +3,23 @@ import Header from "./components/header.vue"
 import Service from "./components/service.vue"
 import Method from "./components/method.vue"
 import Bottom from "./components/bottom.vue"
-import Zuozhe from "./components/zuozhe.vue"
+import Left_index from "./components/left_index.vue"
 export default{
   data(){
     return{
       root_style:{
-        height:"100vh",
-        width:"100vw",
-        display:"flex"
+        height:"100%",
+        width:"100%",
+        display:"flex",
       },
       zuozhe_style:{
-        height:"100%",
-        width:"300px"
+        height:"100vh",
+        width:"390px",
+        backgroundColor:"pink !important"
       },
       body_style:{
         height:"100vh",
-        width:"100vw",
+        flex:"1",
         display:"flex",
         flexDirection: "column",
         backgroundColor:"green"
@@ -39,15 +40,15 @@ export default{
     Service,
     Method,
     Bottom,
-    Zuozhe,
+    Left_index
   }
 }
 </script>
 
-<template>,
+<template>
 <div :style="root_style">
   <div :style="zuozhe_style">
-    <Zuozhe />
+    <Left_index />
   </div>
   <div :style="body_style">
     <Header />
