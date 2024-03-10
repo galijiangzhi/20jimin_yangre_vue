@@ -4,7 +4,7 @@
         <div :style="te_ti_st">软件：</div>
         <div :style="te_st">&nbsp;&nbsp;OS:debian 12</div>
         <div :style="te_st">&nbsp;&nbsp;Python:3.8.10</div>
-        <div :style="te_st">&nbsp;&nbsp;YOLO:V4 </div>
+        <div :style="te_st">&nbsp;&nbsp;YOLO:V5 </div>
     </div>
     <div :style="test_st">
         <div :style="te_ti_st">硬件：</div>

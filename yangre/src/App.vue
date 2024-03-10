@@ -1,6 +1,5 @@
 <script>
 import Header from "./components/header.vue"
-import Service from "./components/service.vue"
 import Method from "./components/method.vue"
 import Bottom from "./components/bottom.vue"
 import Left_index from "./components/left_index.vue"
@@ -15,44 +14,44 @@ export default{
       zuozhe_style:{
         height:"100vh",
         width:"390px",
-        backgroundColor:"pink !important"
+        top:"0px",
+        // backgroundColor:"blue"
+        // backgroundColor:"pink !important"
       },
       body_style:{
         height:"100vh",
         flex:"1",
         display:"flex",
         flexDirection: "column",
-        backgroundColor:"green"
+        // backgroundColor:"green"
       },
       header_style:{
         flex:"1",
-        backgroundColor:"blue"
+        // backgroundColor:"blue"
       },
       service_style:{
         flex:"1",
-        backgroundColor:"yellow"
+        // backgroundColor:"yellow"
       }
 
     }
   },
   components:{
     Header,
-    Service,
     Method,
     Bottom,
-    Left_index
+    Left_index,
   }
 }
 </script>
 
 <template>
-<div :style="root_style">
+<div :style="root_style" class="background-image">
   <div :style="zuozhe_style">
     <Left_index />
   </div>
   <div :style="body_style">
     <Header />
-    <Service />
     <Method />
     <Bottom />
   </div>
@@ -60,4 +59,9 @@ export default{
 </template>
 
 <style>
+  .background-image {
+    background-image: url('../public/background.jpg');
+    background-size: cover; /* 保持图片比例并覆盖整个容器 */
+    background-position: center; /* 设置图片在容器中的位置 */
+  }
 </style>

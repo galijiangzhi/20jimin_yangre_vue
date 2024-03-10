@@ -29,9 +29,6 @@ export default {
         "བོད་སྨན།", "ཤན་འབྱེད་", "སྔོ་སྨན་","藏药", "识别",  "藏花"
       ],
       cude_st:{
-        position:"absolute", /* 设置绝对定位 */
-        top: "80px", /* 距离顶部的距离 */
-        left:"140px",/* 距离左侧的距离 */
         width:"100px",
         height:"100px"
       },
