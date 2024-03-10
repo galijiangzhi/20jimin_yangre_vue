@@ -27,7 +27,9 @@ def upload_file():
             shutil.rmtree(remove_file)
             print("删除成功")
         # 执行脚本
+        print("开始执行脚本")
         os.system("/bin/bash /home/baizhen/target_directory/zangyaohua/test.sh")
+        print("脚本执行完成")
         # 发送文件给用户
         file_path = '/home/baizhen/target_directory/zangyaohua/end/6.jpg'
         return send_file(file_path, as_attachment=True)
