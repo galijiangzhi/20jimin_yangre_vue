@@ -116,7 +116,7 @@ export default {
       this.imageUrl = null;
       this.$data.showComponent=1,
       formData.append('file', event.target.files[0]);
-      axios.post('http://192.168.31.100:43001/upload', formData, {
+      axios.post('http://www.asuka.sanyueyu.top/upload', formData, {
       headers: {
           'Content-Type': 'multipart/form-data'
       },
