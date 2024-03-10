@@ -11,7 +11,7 @@
             <img :style="img_st" src="../../../public/电话.png" alt="phone" @mouseover="showInfo('Phone number: 187-9711-2128')" @mouseout="hideInfo" />
             <img :style="img_st" src="../../../public/邮箱.png" alt="email" @mouseover="showInfo('Email: 3105446387@qq.com')" @mouseout="hideInfo" />
             <img :style="img_st" src="../../../public/微信.png" alt="wechat" @mouseover="showInfo('WeChat: wdbayr')" @mouseout="hideInfo" />
-            <img :style="img_st" src="../../../public/qq.png" alt="qq" @mouseover="showInfo('QQ: 3105446387')" @mouseout="hideInfo" />
+            <img :style="img_st" src="../../../public/球球.png" alt="qq" @mouseover="showInfo('QQ: 3105446387')" @mouseout="hideInfo" />
             <img :style="img_st" src="../../../public/邮筒.png" alt="postal" @mouseover="showInfo('Postal code: 810007')" @mouseout="hideInfo" />
         <div v-if="showInfoBox" :style="infoBoxStyle">{{ infoText }}</div>
         </div>
