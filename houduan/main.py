@@ -25,7 +25,7 @@ def lmj():
         file.save(file_path)  # 保存文件
         # 执行脚本
         print("开始执行脚本")
-        os.system("python /home/baizhen/project/lmj_ABINet_lock/demo_bz.py")
+        os.system("/home/baizhen/anaconda3/envs/lmj_ABINet/bin/python /home/baizhen/project/lmj_ABINet_lock/demo_bz.py")
         print("脚本执行完成")
         test_txt = '/home/baizhen/project/lmj_ABINet_lock/workdir/train-abinet/test.txt'
         with open(test_txt, 'r') as file:
