@@ -60,7 +60,7 @@ export default {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        cursor: "pointer",,
+        cursor: "pointer",
         boxShadowStyle:'none'
         // position: "absolute",
       },
