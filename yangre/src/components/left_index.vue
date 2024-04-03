@@ -12,7 +12,7 @@
 </template>
 <script>
 import Title from "./left_index/title.vue"
-import Introduce from "./left_index/introduce.vue"
+import Introduce from "./left_index/introduce.vue,"
 export default{
     data(){
         return{

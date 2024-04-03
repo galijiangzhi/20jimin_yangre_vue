@@ -60,7 +60,7 @@ export default {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        cursor: "pointer",
+        cursor: "pointer",,
         boxShadowStyle:'none'
         // position: "absolute",
       },
@@ -94,7 +94,7 @@ export default {
       showComponent:0,
       imageUrl: null,
       imageBlob: null,
-    }
+    },
   },
   components:{
     Xuanzhuan,
@@ -111,46 +111,7 @@ export default {
         console.error('No image to save');
       }
     },
-    handleFileUpload(event) {
-      const formData = new FormData();
-      this.imageUrl = null;
-      this.$data.showComponent=1,
-      formData.append('file', event.target.files[0]);
-      axios.post('http://www.asuka.sanyueyu.top/upload', formData, {
-      headers: {
-          'Content-Type': 'multipart/form-data'
-      },
-      responseType: 'arraybuffer' // 设置响应类型为arraybuffer
-      })
-      .then(response => {
-      // 将后端返回的图片数据赋值给imageUrl
-      const blob = new Blob([response.data], { type: 'image/jpeg' }); // 创建Blob对象
-      this.imageBlob = blob; 
-      const imageUrl = URL.createObjectURL(blob); // 通过URL.createObjectURL将blob转换为URL
-      this.$data.showComponent=0,
-      this.imageUrl = imageUrl; // 将URL赋值给组件的imageUrl
-      })
-      .catch(error => {
-      // 处理错误
-      console.error('Error uploading file:', error);
-      });
-    },
-    inin(){
-      this.$data.in_st.backgroundColor="rgba(255,255,255,0.9)"
-      this.$data.in_st.boxShadow = '0 0 10px 5px white';
-    },
-    doin(){
-      this.$data.do_st.backgroundColor="rgba(255,255,255,0.9)"
-      this.$data.do_st.boxShadow = '0 0 10px 5px white';
-    },
-    inout(){
-      this.$data.in_st.backgroundColor="rgba(255,255,255,0.7)"
-      this.$data.in_st.boxShadow = 'none';
-    },
-    doout(){
-      this.$data.do_st.backgroundColor="rgba(255,255,255,0.7)"
-      this.$data.do_st.boxShadow = 'none';
-    },
+,
     triggerFileInput() {
       this.$refs.fileInput.click();
     },
