@@ -22,7 +22,7 @@
 import axios from 'axios'
 import Xuanzhuan from './method/xuanzhuan.vue'
 export default {
-  data() {
+  data(){
     return {
       in_st_visible: {
         opacity: 0,
@@ -94,7 +94,7 @@ export default {
       showComponent:0,
       imageUrl: null,
       imageBlob: null,
-    },
+    }
   },
   components:{
     Xuanzhuan,
@@ -111,7 +111,6 @@ export default {
         console.error('No image to save');
       }
     },
-,
     triggerFileInput() {
       this.$refs.fileInput.click();
     },
